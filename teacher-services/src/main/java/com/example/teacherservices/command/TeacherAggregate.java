@@ -26,7 +26,7 @@ public class TeacherAggregate {
 
     @CommandHandler
     public TeacherAggregate(CreateTeacherCommand createTeacherCommand){
-        if(createTeacherCommand.getAge() <= 0 && createTeacherCommand.getAge() > 60){
+        if(createTeacherCommand.getAge() <= 0 || createTeacherCommand.getAge() > 60){
             throw new IllegalArgumentException("Age cannot be less than or equal to zero and more than 60");
         }
         if(createTeacherCommand.getName() == null || createTeacherCommand.getName().isBlank()){
@@ -40,7 +40,19 @@ public class TeacherAggregate {
         AggregateLifecycle.apply(teacherCreatedEvent);
     }
     @CommandHandler
-    public TeacherAggregate(UpdateTeacherCommand updateTeacherCommand){
+    public void updateTeacher(UpdateTeacherCommand updateTeacherCommand){
+        if(updateTeacherCommand.getAge() <= 0 || updateTeacherCommand.getAge() > 60){
+            throw new IllegalArgumentException("Age cannot be less than or equal to zero and more than 60");
+        }
+        if(updateTeacherCommand.getName() == null || updateTeacherCommand.getName().isBlank()){
+            throw new IllegalArgumentException("Name cannot be empty");
+        }
+        if(updateTeacherCommand.getPhone().length() != 10){
+            throw new IllegalArgumentException("Phone must be 10 digits");
+        }
+        if(updateTeacherCommand.getTeacherId() == null|| updateTeacherCommand.getTeacherId().isBlank()){
+            throw new IllegalArgumentException("TeacherID cannot be empty");
+        }
         TeacherUpdatedEvent teacherUpdatedEvent = new TeacherUpdatedEvent();
         BeanUtils.copyProperties(updateTeacherCommand, teacherUpdatedEvent);
         AggregateLifecycle.apply(teacherUpdatedEvent);
@@ -48,7 +60,10 @@ public class TeacherAggregate {
     }
 
     @CommandHandler
-    public TeacherAggregate(DeleteTeacherCommand deleteTeacherCommand){
+    public void deleteTeacher(DeleteTeacherCommand deleteTeacherCommand){
+        if(deleteTeacherCommand.getTeacherId() == null|| deleteTeacherCommand.getTeacherId().isBlank()){
+            throw new IllegalArgumentException("TeacherID cannot be empty");
+        }
         TeacherDeletedEvent teacherDeletedEvent = new TeacherDeletedEvent();
         BeanUtils.copyProperties(deleteTeacherCommand, teacherDeletedEvent);
         AggregateLifecycle.apply(teacherDeletedEvent);
