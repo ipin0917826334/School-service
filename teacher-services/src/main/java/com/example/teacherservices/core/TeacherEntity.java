@@ -12,12 +12,14 @@ import java.io.Serializable;
 @Table(name = "teachers")
 @Data
 public class TeacherEntity implements Serializable{
-    private static final long serialVersionUID = -4703102532579738583L;
 
+    private static final long serialVersionUID = -4656058165108328564L;
     @Id
     @Column(unique = true)
     private String teacherId;
     private String name;
     private Integer age;
     private String birth;
+    private String address;
+    private String phone;
 }

@@ -10,4 +10,6 @@ public class TeacherCreatedEvent {
     private String name;
     private Integer age;
     private String birth;
+    private String address;
+    private String phone;
 }

@@ -19,8 +19,8 @@ public class TeacherQueryHandler {
     @QueryHandler
     List<TeacherRestModel> findTeacher(FindTeacherQuery query){
         List<TeacherRestModel> teacherRest = new ArrayList<>();
-        List<TeacherEntity> storedProducts = teacherRepository.findAll();
-        for(TeacherEntity teacherEntity : storedProducts){
+        List<TeacherEntity> teachers = teacherRepository.findAll();
+        for(TeacherEntity teacherEntity : teachers){
             TeacherRestModel teacherRestModel = new TeacherRestModel();
             BeanUtils.copyProperties(teacherEntity, teacherRestModel);
             teacherRest.add(teacherRestModel);

@@ -3,12 +3,9 @@ package com.example.teacherservices.command;
 import lombok.Builder;
 import lombok.Data;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
-
-import java.math.BigDecimal;
-
 @Builder
 @Data
-public class CreateTeacherCommand {
+public class UpdateTeacherCommand {
     @TargetAggregateIdentifier
     private final String teacherId;
 

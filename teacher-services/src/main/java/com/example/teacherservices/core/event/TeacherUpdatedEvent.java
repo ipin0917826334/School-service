@@ -1,11 +1,10 @@
-package com.example.teacherservices.command.rest;
+package com.example.teacherservices.core.event;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
-
 @Data
-public class CreateTeacherRestModel {
+public class TeacherUpdatedEvent {
+    private String teacherId;
     private String name;
     private Integer age;
     private String birth;
