@@ -32,7 +32,7 @@ public class SubjectAggregate {
         AggregateLifecycle.apply(subjectCreatedEvent);
     }
     @CommandHandler
-    public void updateTeacher(UpdateSubjectCommand updateSubjectCommand){
+    public void updateSubject(UpdateSubjectCommand updateSubjectCommand){
         if(updateSubjectCommand.getSubjectName() == null || updateSubjectCommand.getSubjectName().isBlank()){
             throw new IllegalArgumentException("Name cannot be empty");
         }
@@ -45,7 +45,7 @@ public class SubjectAggregate {
     }
 
     @CommandHandler
-    public void deleteTeacher(DeleteSubjectCommand deleteSubjectCommand){
+    public void deleteSubject(DeleteSubjectCommand deleteSubjectCommand){
         if(deleteSubjectCommand.getSubjectId() == null|| deleteSubjectCommand.getSubjectId().isBlank()){
             throw new IllegalArgumentException("SubjectId() cannot be empty");
         }
