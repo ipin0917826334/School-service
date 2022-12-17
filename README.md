@@ -9,3 +9,4 @@ Gradeลงในstudent
 Rabbitmq
 
 ok say good
+พน.ซัก บ่าย3ดีมะ หรือ2ดี
