@@ -13,5 +13,5 @@ public class CreateTeacherRestModel {
     private String birth;
     private String address;
     private String phone;
-    private String subjects;
+    private List<String> subjects;
 }

@@ -16,5 +16,5 @@ public class UpdateTeacherCommand {
     private final String birth;
     private final String address;
     private final String phone;
-    private final String subjects;
+    private final List<String> subjects;
 }

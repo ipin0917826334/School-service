@@ -33,14 +33,7 @@ public class TeacherQueryHandler {
             teacherRest.add(teacherRestModel);
         }
         System.out.println("finish");
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        DataOutputStream out = new DataOutputStream(baos);
-//
-//        for (TeacherRestModel element : teacherRest) {
-//            out.writeUTF(String.valueOf(element));
-//        }
-//        byte[] bytes = baos.toByteArray();
-//        rabbitTemplate.convertAndSend("teacherExchange","subject", bytes);
+
         return teacherRest;
     }
 }

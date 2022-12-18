@@ -26,24 +26,5 @@ public class TeacherConsumer {
         TeacherRestModel teacherRestModel = new TeacherRestModel();
         teacherRestModel.setSubjects(subjectName);
         System.out.println(subjectName);
-//        JSONObject jsonObject = new JSONObject((Map<String, ?>) data1.get(0));
-//        SubjectRestModel subjectRestModel = (SubjectRestModel) data1.get(0);
-//        System.out.println(subjectRestModel.getSubjectName());
-//        for(Object obj : data1) {
-//
-//            if(obj instanceof List) {    //if it is List type then type cast it
-//                List<String> str = (List<String>) obj;
-//                for(String s : str) {
-//                    System.out.println(s);
-//                }
-//            }
-////            System.out.println(element);
-//        }
-//        System.out.println(data1);
-//        System.out.println((ArrayList) data1);
-//        JSONObject jsonObject = new JSONObject((Map<String, ?>) data1.get(0));
-//       List<String> arrlist = new ArrayList<String>();
-//       arrlist.add(subjectRestModel);
-//       System.out.println(arrlist);
     }
 }

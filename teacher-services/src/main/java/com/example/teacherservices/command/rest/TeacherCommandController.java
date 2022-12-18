@@ -49,6 +49,7 @@ public class TeacherCommandController {
                 .birth(model.getBirth())
                 .address(model.getAddress())
                 .phone(model.getPhone())
+                .subjects(model.getSubjects())
                 .build();
         String result;
         try{

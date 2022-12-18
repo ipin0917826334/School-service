@@ -60,7 +60,6 @@ public class TeacherAggregate {
         TeacherUpdatedEvent teacherUpdatedEvent = new TeacherUpdatedEvent();
         BeanUtils.copyProperties(updateTeacherCommand, teacherUpdatedEvent);
         AggregateLifecycle.apply(teacherUpdatedEvent);
-        System.out.println("hello");
     }
 
     @CommandHandler
