@@ -7,7 +7,6 @@ import com.example.teacherservices.core.event.TeacherDeletedEvent;
 import com.example.teacherservices.core.event.TeacherUpdatedEvent;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +21,8 @@ public class TeacherEventsHandler {
         TeacherEntity teacherEntity = new TeacherEntity();
         BeanUtils.copyProperties(event, teacherEntity);
         teacherRepository.save(teacherEntity);
+        System.out.println("Event "+event);
+        System.out.println("Entity "+teacherEntity);
     }
     @EventHandler
     public void on(TeacherUpdatedEvent event){
@@ -31,6 +32,6 @@ public class TeacherEventsHandler {
     }
     @EventHandler
     public void on(TeacherDeletedEvent event){
-        teacherRepository.deleteById(event.getTeacherId());
+        teacherRepository.deleteById(event.get_id());
     }
 }

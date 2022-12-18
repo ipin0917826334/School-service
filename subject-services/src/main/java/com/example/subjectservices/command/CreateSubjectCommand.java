@@ -8,7 +8,7 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Data
 public class CreateSubjectCommand {
     @TargetAggregateIdentifier
-    private String subjectId;
+    private String _id;
 
     private String subjectName;
     private Integer periodTime;

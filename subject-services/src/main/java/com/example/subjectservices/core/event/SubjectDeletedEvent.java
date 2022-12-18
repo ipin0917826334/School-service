@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class SubjectDeletedEvent {
-    private String subjectId;
+    private String _id;
 }

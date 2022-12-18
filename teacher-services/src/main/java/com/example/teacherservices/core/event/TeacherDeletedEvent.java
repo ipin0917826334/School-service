@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class TeacherDeletedEvent {
-    private String teacherId;
+    private String _id;
 }

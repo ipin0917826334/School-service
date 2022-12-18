@@ -1,6 +1,7 @@
 package com.example.subjectservices.core;
 
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "subjects")
+@Document("subjects")
 @Data
 public class SubjectEntity implements Serializable{
 
@@ -17,7 +18,7 @@ public class SubjectEntity implements Serializable{
 
     @Id
     @Column(unique = true)
-    private String subjectId;
+    private String _id;
     private String subjectName;
     private Integer periodTime;
     private String teacherName;

@@ -8,5 +8,5 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Data
 public class DeleteTeacherCommand {
     @TargetAggregateIdentifier
-    private final String teacherId;
+    private final String _id;
 }

@@ -13,7 +13,7 @@ import org.springframework.beans.BeanUtils;
 @Aggregate
 public class SubjectAggregate {
     @AggregateIdentifier
-    private String subjectId;
+    private String _id;
 
     private String subjectName;
     private Integer periodTime;
@@ -36,8 +36,8 @@ public class SubjectAggregate {
         if(updateSubjectCommand.getSubjectName() == null || updateSubjectCommand.getSubjectName().isBlank()){
             throw new IllegalArgumentException("Name cannot be empty");
         }
-        if(updateSubjectCommand.getSubjectId() == null|| updateSubjectCommand.getSubjectId().isBlank()){
-            throw new IllegalArgumentException("SubjectId cannot be empty");
+        if(updateSubjectCommand.get_id() == null|| updateSubjectCommand.get_id().isBlank()){
+            throw new IllegalArgumentException("Id cannot be empty");
         }
         SubjectUpdatedEvent subjectUpdatedEvent = new SubjectUpdatedEvent();
         BeanUtils.copyProperties(updateSubjectCommand, subjectUpdatedEvent);
@@ -46,8 +46,8 @@ public class SubjectAggregate {
 
     @CommandHandler
     public void deleteSubject(DeleteSubjectCommand deleteSubjectCommand){
-        if(deleteSubjectCommand.getSubjectId() == null|| deleteSubjectCommand.getSubjectId().isBlank()){
-            throw new IllegalArgumentException("SubjectId() cannot be empty");
+        if(deleteSubjectCommand.get_id() == null|| deleteSubjectCommand.get_id().isBlank()){
+            throw new IllegalArgumentException("Id() cannot be empty");
         }
         SubjectDeletedEvent subjectDeletedEvent = new SubjectDeletedEvent();
         BeanUtils.copyProperties(deleteSubjectCommand, subjectDeletedEvent);
@@ -56,22 +56,22 @@ public class SubjectAggregate {
 
     @EventSourcingHandler
     public void on(SubjectCreatedEvent subjectCreatedEvent){
-        this.subjectId = subjectCreatedEvent.getSubjectId();
+        this._id = subjectCreatedEvent.get_id();
         this.subjectName = subjectCreatedEvent.getSubjectName();
         this.periodTime = subjectCreatedEvent.getPeriodTime();
         this.teacherName = subjectCreatedEvent.getTeacherName();
     }
     @EventSourcingHandler
     public void on(SubjectUpdatedEvent subjectUpdatedEvent){
-        this.subjectId = subjectUpdatedEvent.getSubjectId();
+        this._id = subjectUpdatedEvent.get_id();
         this.subjectName = subjectUpdatedEvent.getSubjectName();
         this.periodTime = subjectUpdatedEvent.getPeriodTime();
         this.teacherName = subjectUpdatedEvent.getTeacherName();
-        System.out.println("Update subject Id: " + this.subjectId);
+        System.out.println("Update subject Id: " + this._id);
     }
     @EventSourcingHandler
     public void on(SubjectDeletedEvent subjectDeletedEvent){
-        this.subjectId = subjectDeletedEvent.getSubjectId();
-        System.out.println("Delete subject Id: " + this.subjectId);
+        this._id = subjectDeletedEvent.get_id();
+        System.out.println("Delete subject Id: " + this._id);
     }
 }

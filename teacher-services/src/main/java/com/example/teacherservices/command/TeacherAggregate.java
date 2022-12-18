@@ -10,16 +10,20 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.springframework.beans.BeanUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Aggregate
 public class TeacherAggregate {
     @AggregateIdentifier
-    private String teacherId;
+    private String _id;
 
     private String name;
     private Integer age;
     private String birth;
     private String address;
     private String phone;
+    private List<String> subjects;
 
     public TeacherAggregate(){
     }
@@ -50,7 +54,7 @@ public class TeacherAggregate {
         if(updateTeacherCommand.getPhone().length() != 10){
             throw new IllegalArgumentException("Phone must be 10 digits");
         }
-        if(updateTeacherCommand.getTeacherId() == null|| updateTeacherCommand.getTeacherId().isBlank()){
+        if(updateTeacherCommand.get_id() == null|| updateTeacherCommand.get_id().isBlank()){
             throw new IllegalArgumentException("TeacherID cannot be empty");
         }
         TeacherUpdatedEvent teacherUpdatedEvent = new TeacherUpdatedEvent();
@@ -61,7 +65,7 @@ public class TeacherAggregate {
 
     @CommandHandler
     public void deleteTeacher(DeleteTeacherCommand deleteTeacherCommand){
-        if(deleteTeacherCommand.getTeacherId() == null|| deleteTeacherCommand.getTeacherId().isBlank()){
+        if(deleteTeacherCommand.get_id() == null|| deleteTeacherCommand.get_id().isBlank()){
             throw new IllegalArgumentException("TeacherID cannot be empty");
         }
         TeacherDeletedEvent teacherDeletedEvent = new TeacherDeletedEvent();
@@ -71,26 +75,29 @@ public class TeacherAggregate {
 
     @EventSourcingHandler
     public void on(TeacherCreatedEvent teacherCreatedEvent){
-        this.teacherId = teacherCreatedEvent.getTeacherId();
+        this._id = teacherCreatedEvent.get_id();
         this.name = teacherCreatedEvent.getName();
         this.age = teacherCreatedEvent.getAge();
         this.birth = teacherCreatedEvent.getBirth();
         this.address = teacherCreatedEvent.getAddress();
         this.phone = teacherCreatedEvent.getPhone();
+        this.subjects = teacherCreatedEvent.getSubjects();
+        System.out.println("Create teacher subjects: " + this.subjects);
     }
     @EventSourcingHandler
     public void on(TeacherUpdatedEvent teacherUpdatedEvent){
-        this.teacherId = teacherUpdatedEvent.getTeacherId();
+        this._id = teacherUpdatedEvent.get_id();
         this.name = teacherUpdatedEvent.getName();
         this.age = teacherUpdatedEvent.getAge();
         this.birth = teacherUpdatedEvent.getBirth();
         this.address = teacherUpdatedEvent.getAddress();
         this.phone = teacherUpdatedEvent.getPhone();
-        System.out.println("Update teacher Id: " + this.teacherId);
+        this.subjects = teacherUpdatedEvent.getSubjects();
+        System.out.println("Update teacher Id: " + this._id);
     }
     @EventSourcingHandler
     public void on(TeacherDeletedEvent teacherDeletedEvent){
-        this.teacherId = teacherDeletedEvent.getTeacherId();
-        System.out.println("Delete teacher Id: " + this.teacherId);
+        this._id = teacherDeletedEvent.get_id();
+        System.out.println("Delete teacher Id: " + this._id);
     }
 }

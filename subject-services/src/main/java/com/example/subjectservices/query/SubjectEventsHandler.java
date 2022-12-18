@@ -30,6 +30,6 @@ public class SubjectEventsHandler {
     }
     @EventHandler
     public void on(SubjectDeletedEvent event){
-        subjectRepository.deleteById(event.getSubjectId());
+        subjectRepository.deleteById(event.get_id());
     }
 }
