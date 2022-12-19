@@ -4,7 +4,7 @@
 เหลือยัด
 Subjectลงในteacher ✓
 
-SubjectIdลงในgrade
+SubjectIdลงในgrade #แต่เรามี subjectName แล้วนะ
 
 Gradeลงในstudent
 
