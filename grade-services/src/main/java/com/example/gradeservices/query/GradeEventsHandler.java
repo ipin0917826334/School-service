@@ -30,6 +30,6 @@ public class GradeEventsHandler {
     }
     @EventHandler
     public void on(GradeDeletedEvent event){
-        gradeRepository.deleteById(event.getGradeId());
+        gradeRepository.deleteById(event.get_id());
     }
 }

@@ -7,7 +7,7 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Data
 public class UpdateGradeCommand {
     @TargetAggregateIdentifier
-    private String gradeId;
+    private String _id;
     private String studentId;
     private String subjectName;
     private String grade;

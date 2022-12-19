@@ -1,10 +1,10 @@
 package com.example.gradeservices.core.data;
 
 import com.example.gradeservices.core.GradeEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GradeRepository extends JpaRepository<GradeEntity, String> {
-    GradeEntity findByGradeId(String subjectId);
+public interface GradeRepository extends MongoRepository<GradeEntity, String> {
+    GradeEntity findBy_id(String _id);
 }

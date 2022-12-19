@@ -13,7 +13,7 @@ import org.springframework.beans.BeanUtils;
 @Aggregate
 public class GradeAggregate {
     @AggregateIdentifier
-    private String gradeId;
+    private String _id;
     private String studentId;
     private String subjectName;
     private String grade;
@@ -35,6 +35,9 @@ public class GradeAggregate {
     }
     @CommandHandler
     public void updateGrade(UpdateGradeCommand updateGradeCommand){
+        if(updateGradeCommand.get_id() == null || updateGradeCommand.get_id().isBlank()){
+            throw new IllegalArgumentException("GradeId cannot be empty");
+        }
         if(updateGradeCommand.getSubjectName() == null || updateGradeCommand.getSubjectName().isBlank()){
             throw new IllegalArgumentException("Name cannot be empty");
         }
@@ -48,7 +51,7 @@ public class GradeAggregate {
 
     @CommandHandler
     public void deleteGrade(DeleteGradeCommand deleteGradeCommand){
-        if(deleteGradeCommand.getGradeId() == null|| deleteGradeCommand.getGradeId().isBlank()){
+        if(deleteGradeCommand.get_id() == null|| deleteGradeCommand.get_id().isBlank()){
             throw new IllegalArgumentException("GradeId cannot be empty");
         }
         GradeDeletedEvent gradeDeletedEvent = new GradeDeletedEvent();
@@ -58,22 +61,22 @@ public class GradeAggregate {
 
     @EventSourcingHandler
     public void on(GradeCreatedEvent gradeCreatedEvent){
-        this.gradeId = gradeCreatedEvent.getGradeId();
+        this._id = gradeCreatedEvent.get_id();
         this.subjectName = gradeCreatedEvent.getSubjectName();
         this.studentId = gradeCreatedEvent.getStudentId();
         this.grade = gradeCreatedEvent.getGrade();
     }
     @EventSourcingHandler
     public void on(GradeUpdatedEvent gradeUpdatedEvent){
-        this.gradeId = gradeUpdatedEvent.getGradeId();
+        this._id = gradeUpdatedEvent.get_id();
         this.subjectName = gradeUpdatedEvent.getSubjectName();
         this.studentId = gradeUpdatedEvent.getStudentId();
         this.grade = gradeUpdatedEvent.getGrade();
-        System.out.println("Update grade Id: " + this.gradeId);
+        System.out.println("Update grade Id: " + this._id);
     }
     @EventSourcingHandler
     public void on(GradeDeletedEvent gradeDeletedEvent){
-        this.gradeId = gradeDeletedEvent.getGradeId();
-        System.out.println("Delete grade Id: " + this.gradeId);
+        this._id = gradeDeletedEvent.get_id();
+        System.out.println("Delete grade Id: " + this._id);
     }
 }

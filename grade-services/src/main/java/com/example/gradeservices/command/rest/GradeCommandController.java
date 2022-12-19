@@ -5,6 +5,7 @@ import com.example.gradeservices.command.DeleteGradeCommand;
 import com.example.gradeservices.command.UpdateGradeCommand;
 import com.example.gradeservices.query.rest.GradeRestModel;
 import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class GradeCommandController {
     @PostMapping
     public String createGrade(@RequestBody CreateGradeRestModel model){
         CreateGradeCommand command = CreateGradeCommand.builder()
-                .gradeId(UUID.randomUUID().toString())
+                ._id(new ObjectId().toString())
                 .studentId(model.getStudentId())
                 .subjectName(model.getSubjectName())
                 .grade(model.getGrade())
@@ -38,7 +39,7 @@ public class GradeCommandController {
     @PutMapping
     public String updateGrade(@RequestBody GradeRestModel model){
         UpdateGradeCommand command = UpdateGradeCommand.builder()
-                .gradeId(model.getGradeId())
+                ._id(model.get_id())
                 .studentId(model.getStudentId())
                 .subjectName(model.getSubjectName())
                 .grade(model.getGrade())
@@ -55,7 +56,7 @@ public class GradeCommandController {
     @DeleteMapping
     public String deleteGrade(@RequestBody GradeRestModel model){
         DeleteGradeCommand command = DeleteGradeCommand.builder()
-                .gradeId(model.getGradeId())
+                ._id(model.get_id())
                 .build();
 
         String result;

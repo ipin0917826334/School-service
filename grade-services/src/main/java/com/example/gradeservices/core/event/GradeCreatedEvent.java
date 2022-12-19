@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class GradeCreatedEvent {
-    private String gradeId;
+    private String _id;
     private String studentId;
     private String subjectName;
     private String grade;
