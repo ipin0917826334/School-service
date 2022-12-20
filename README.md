@@ -10,6 +10,8 @@ SubjectIdลงในgrade #แต่เรามี subjectName แล้วน
 
 Gradeลงในstudent ✓ ทำ rabbitmq ให้ส่งเกรดของนักเรียนคนนั้นๆแล้ว แค่นั้นแหละ
 
+ทำ Login แล้ว ใช้ email, password ของ google ได้ (ใช้ firebase)
+
 แล้วก็implement grpcเข้ามาใช้(กุก็ไม่รุใช้ตรงไหน)
 Rabbitmq
 ขอบคุณเทพโอมมากคับ ที่ขยันทํางาน
