@@ -9,4 +9,5 @@ public class SubjectRestModel {
     private String subjectName;
     private Integer periodTime;
     private String teacherName;
+    private String teacherId;
 }

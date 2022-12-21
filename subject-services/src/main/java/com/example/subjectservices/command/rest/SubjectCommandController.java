@@ -25,13 +25,10 @@ import java.util.UUID;
 @RequestMapping("/subjects")
 public class SubjectCommandController {
     private final CommandGateway commandGateway;
-    private final SubjectRepository subjectRepository;
-//    @Autowired
-//    private RabbitTemplate rabbitTemplate;
+
     @Autowired
     public SubjectCommandController(CommandGateway commandGateway, SubjectRepository subjectRepository){
         this.commandGateway = commandGateway;
-        this.subjectRepository = subjectRepository;
     }
 
     @PostMapping
@@ -41,6 +38,7 @@ public class SubjectCommandController {
                 .subjectName(model.getSubjectName())
                 .periodTime(model.getPeriodTime())
                 .teacherName(model.getTeacherName())
+                .teacherId(model.getTeacherId())
                 .build();
         String result;
         try{
@@ -57,6 +55,7 @@ public class SubjectCommandController {
                 .subjectName(model.getSubjectName())
                 .periodTime(model.getPeriodTime())
                 .teacherName(model.getTeacherName())
+                .teacherId(model.getTeacherId())
                 .build();
         String result;
         try{
@@ -81,25 +80,5 @@ public class SubjectCommandController {
         }
         return result;
     }
-//    @GetMapping
-//    List<String> findSubjectByTeacherName(@RequestBody SubjectRestModel model) throws IOException {
-////        List<String> subjectRest = new ArrayList<>();
-//        List<String> subjects = subjectRepository.findByTeacherName(model.getTeacherName());
-////        subjectRest.add(subjects.toString());
-////        List<SubjectEntity> subjects = new ArrayList<SubjectEntity>();
-////        subjects.add(subjectRepository.findByTeacherName(model.getTeacherName()));
-////        for(String subjectEntity : subjects){
-////            subjectRest.add(subjects.toString());
-////        }
-////        System.out.print(subjects);
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        DataOutputStream out = new DataOutputStream(baos);
-//
-//        for (String element : subjects) {
-//            out.writeUTF(element);
-//        }
-//        byte[] bytes = baos.toByteArray();
-//        rabbitTemplate.convertAndSend("subjectExchange","teacher", bytes);
-//        return subjects;
-//    }
+
 }

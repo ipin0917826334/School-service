@@ -14,4 +14,5 @@ public class UpdateSubjectCommand {
     private String subjectName;
     private Integer periodTime;
     private String teacherName;
+    private String teacherId;
 }

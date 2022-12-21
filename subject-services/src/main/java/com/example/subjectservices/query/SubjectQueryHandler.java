@@ -36,25 +36,6 @@ public class SubjectQueryHandler {
         }
         return subjectRest;
     }
-//    @QueryHandler
-//    List<SubjectRestModel> findSubjectByTeacherName(FindSubjectQuery query, SubjectRestModel model) throws IOException {
-//        List<SubjectRestModel> subjectRest = new ArrayList<>();
-//        List<SubjectEntity> subjects = (List<SubjectEntity>) subjectRepository.findByTeacherName(model.getTeacherName());
-//        for(SubjectEntity subjectEntity : subjects){
-//            SubjectRestModel subjectRestModel = new SubjectRestModel();
-//            BeanUtils.copyProperties(subjectEntity, subjectRestModel);
-//            subjectRest.add(subjectRestModel);
-//        }
-////        System.out.print(subjects);
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        DataOutputStream out = new DataOutputStream(baos);
-//
-////        for (SubjectRestModel element : subjectRest) {
-////            out.writeUTF(String.valueOf(element));
-////        }
-//        byte[] bytes = baos.toByteArray();
-//        rabbitTemplate.convertAndSend("subjectExchange","teacher", bytes);
-//        return subjectRest;
-//    }
+
 
 }

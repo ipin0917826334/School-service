@@ -18,6 +18,7 @@ public class SubjectAggregate {
     private String subjectName;
     private Integer periodTime;
     private String teacherName;
+    private String teacherId;
 
     public SubjectAggregate(){
     }
@@ -60,6 +61,7 @@ public class SubjectAggregate {
         this.subjectName = subjectCreatedEvent.getSubjectName();
         this.periodTime = subjectCreatedEvent.getPeriodTime();
         this.teacherName = subjectCreatedEvent.getTeacherName();
+        this.teacherId =subjectCreatedEvent.getTeacherId();
     }
     @EventSourcingHandler
     public void on(SubjectUpdatedEvent subjectUpdatedEvent){
@@ -67,6 +69,7 @@ public class SubjectAggregate {
         this.subjectName = subjectUpdatedEvent.getSubjectName();
         this.periodTime = subjectUpdatedEvent.getPeriodTime();
         this.teacherName = subjectUpdatedEvent.getTeacherName();
+        this.teacherId =subjectUpdatedEvent.getTeacherId();
         System.out.println("Update subject Id: " + this._id);
     }
     @EventSourcingHandler
