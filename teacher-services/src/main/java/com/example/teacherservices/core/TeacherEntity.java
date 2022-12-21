@@ -14,6 +14,7 @@ import java.util.List;
 public class TeacherEntity implements Serializable{
 
     private static final long serialVersionUID = -4656058165108328564L;
+
     @Id
     private String _id;
     private String name;
@@ -22,4 +23,5 @@ public class TeacherEntity implements Serializable{
     private String address;
     private String phone;
     private List<String> subjects = new ArrayList<>();
+    private String email;
 }

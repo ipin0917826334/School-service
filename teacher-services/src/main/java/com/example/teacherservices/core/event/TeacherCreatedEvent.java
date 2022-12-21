@@ -14,4 +14,5 @@ public class TeacherCreatedEvent {
     private String address;
     private String phone;
     private List<String> subjects;
+    private String email;
 }

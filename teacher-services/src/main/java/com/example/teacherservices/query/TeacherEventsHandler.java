@@ -21,8 +21,6 @@ public class TeacherEventsHandler {
         TeacherEntity teacherEntity = new TeacherEntity();
         BeanUtils.copyProperties(event, teacherEntity);
         teacherRepository.save(teacherEntity);
-        System.out.println("Event "+event);
-        System.out.println("Entity "+teacherEntity);
     }
     @EventHandler
     public void on(TeacherUpdatedEvent event){

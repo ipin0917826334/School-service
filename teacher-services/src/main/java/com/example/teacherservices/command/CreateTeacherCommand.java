@@ -20,4 +20,5 @@ public class CreateTeacherCommand {
     private final String address;
     private final String phone;
     private final List<String> subjects;
+    private final String email;
 }
