@@ -24,20 +24,15 @@ public class TeacherAggregate {
     private String address;
     private String phone;
     private List<String> subjects;
+    private String email;
 
     public TeacherAggregate(){
     }
 
     @CommandHandler
     public TeacherAggregate(CreateTeacherCommand createTeacherCommand){
-        if(createTeacherCommand.getAge() <= 0 || createTeacherCommand.getAge() > 60){
-            throw new IllegalArgumentException("Age cannot be less than or equal to zero and more than 60");
-        }
-        if(createTeacherCommand.getName() == null || createTeacherCommand.getName().isBlank()){
-            throw new IllegalArgumentException("Name cannot be empty");
-        }
-        if(createTeacherCommand.getPhone().length() != 10){
-            throw new IllegalArgumentException("Phone must be 10 digits");
+        if(createTeacherCommand.getEmail() == null || createTeacherCommand.getEmail().isBlank()){
+            throw new IllegalArgumentException("Teacher Email cannot be empty");
         }
         TeacherCreatedEvent teacherCreatedEvent = new TeacherCreatedEvent();
         BeanUtils.copyProperties(createTeacherCommand, teacherCreatedEvent);
@@ -81,7 +76,7 @@ public class TeacherAggregate {
         this.address = teacherCreatedEvent.getAddress();
         this.phone = teacherCreatedEvent.getPhone();
         this.subjects = teacherCreatedEvent.getSubjects();
-        System.out.println("Create teacher subjects: " + this.subjects);
+        this.email = teacherCreatedEvent.getEmail();
     }
     @EventSourcingHandler
     public void on(TeacherUpdatedEvent teacherUpdatedEvent){
@@ -92,6 +87,7 @@ public class TeacherAggregate {
         this.address = teacherUpdatedEvent.getAddress();
         this.phone = teacherUpdatedEvent.getPhone();
         this.subjects = teacherUpdatedEvent.getSubjects();
+        this.email = teacherUpdatedEvent.getEmail();
         System.out.println("Update teacher Id: " + this._id);
     }
     @EventSourcingHandler

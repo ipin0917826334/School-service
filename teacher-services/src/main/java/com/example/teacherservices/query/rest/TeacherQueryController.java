@@ -28,7 +28,9 @@ public class TeacherQueryController {
                 .query(findTeacherQuery, ResponseTypes.multipleInstancesOf(TeacherRestModel.class)).join();
         return teachers;
     }
-    @GetMapping("/getTeacher")
+
+    @CrossOrigin(origins = "http://localhost:8080")
+    @PostMapping("/getTeacher")
     public List<TeacherRestModel> getTeachers(@RequestBody TeacherRestModel model){
         List<TeacherRestModel> teachers = teacherRepository.findByEmail(model.getEmail());
         return teachers;

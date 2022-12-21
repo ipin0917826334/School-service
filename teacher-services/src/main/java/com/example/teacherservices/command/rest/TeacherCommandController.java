@@ -30,6 +30,7 @@ public class TeacherCommandController {
                 .address(model.getAddress())
                 .phone(model.getPhone())
                 .subjects(model.getSubjects())
+                .email(model.getEmail())
                 .build();
         String result;
         System.out.println("subject: "+model.getSubjects());
@@ -40,6 +41,7 @@ public class TeacherCommandController {
         }
         return result;
     }
+    @CrossOrigin(origins = "http://localhost:8080")
     @PutMapping
     public String updateTeacher(@RequestBody TeacherRestModel model){
         UpdateTeacherCommand command = UpdateTeacherCommand.builder()
@@ -50,6 +52,7 @@ public class TeacherCommandController {
                 .address(model.getAddress())
                 .phone(model.getPhone())
                 .subjects(model.getSubjects())
+                .email(model.getEmail())
                 .build();
         String result;
         try{
