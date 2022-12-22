@@ -6,10 +6,7 @@ import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -31,20 +28,22 @@ public class SubjectQueryController {
         this.subjectRepository = subjectRepository;
     }
 
-    @GetMapping("/getSubjects")
+    @CrossOrigin(origins = "http://localhost:8080")
+    @PostMapping("/getSubjects")
     public List<SubjectRestModel> getSubjects(@RequestBody SubjectRestModel model){
-        List<SubjectRestModel> subjects = subjectRepository.findByTeacherName(model.getTeacherName());
+        List<SubjectRestModel> subjects = subjectRepository.findByTeacherId(model.getTeacherId());
         return subjects;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping
-    List<SubjectRestModel> findSubjectByTeacherName(@RequestBody SubjectRestModel model) throws IOException {
-        List<SubjectRestModel> subjects = subjectRepository.findByTeacherName(model.getTeacherName());
+    List<SubjectRestModel> findSubjectByTeacherId(@RequestBody SubjectRestModel model) throws IOException {
+        List<SubjectRestModel> subjects = subjectRepository.findByTeacherId(model.getTeacherId());
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         DataOutputStream out = new DataOutputStream(baos);
 
         for (SubjectRestModel element : subjects) {
-            out.writeUTF(element.getSubjectName());
+            out.writeUTF(String.valueOf(element));
         }
         byte[] bytes = baos.toByteArray();
         rabbitTemplate.convertAndSend("subjectExchange","teacher", bytes);

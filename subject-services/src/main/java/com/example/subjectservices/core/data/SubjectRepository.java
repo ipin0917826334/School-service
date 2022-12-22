@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface SubjectRepository extends MongoRepository<SubjectEntity, String> {
     SubjectEntity findBy_id(String _id);
-    @Query(value = "{ 'teacherName' : ?0 }")
-    List<SubjectRestModel> findByTeacherName(String teacherName);
+    @Query(value = "{ 'teacherId' : ?0 }")
+    List<SubjectRestModel> findByTeacherId(String teacherId);
     SubjectEntity findBy_idOrSubjectName(String _id, String subjectName);
 }

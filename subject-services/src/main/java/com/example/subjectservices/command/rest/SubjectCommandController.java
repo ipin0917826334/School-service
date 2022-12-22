@@ -31,6 +31,7 @@ public class SubjectCommandController {
         this.commandGateway = commandGateway;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping
     public String createSubject(@RequestBody CreateSubjectRestModel model){
         CreateSubjectCommand command = CreateSubjectCommand.builder()
@@ -48,6 +49,7 @@ public class SubjectCommandController {
         }
         return result;
     }
+    @CrossOrigin(origins = "http://localhost:8080")
     @PutMapping
     public String updateSubject(@RequestBody SubjectRestModel model){
         UpdateSubjectCommand command = UpdateSubjectCommand.builder()
@@ -66,6 +68,7 @@ public class SubjectCommandController {
         return result;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @DeleteMapping
     public String deleteSubject(@RequestBody SubjectRestModel model){
         DeleteSubjectCommand command = DeleteSubjectCommand.builder()
