@@ -18,6 +18,7 @@ public class TeacherCommandController {
         this.commandGateway = commandGateway;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping
     public String createStudent(@RequestBody CreateStudentRestModel model){
         CreateStudentCommand command = CreateStudentCommand.builder()
@@ -37,6 +38,7 @@ public class TeacherCommandController {
         }
         return result;
     }
+    @CrossOrigin(origins = "http://localhost:8080")
     @PutMapping
     public String updateStudent(@RequestBody StudentRestModel model){
         UpdateStudentCommand command = UpdateStudentCommand.builder()
@@ -57,6 +59,7 @@ public class TeacherCommandController {
         return result;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @DeleteMapping
     public String deleteStudent(@RequestBody StudentRestModel model){
         DeleteStudentCommand command = DeleteStudentCommand.builder()
