@@ -12,5 +12,8 @@ import java.util.List;
 public interface GradeRepository extends MongoRepository<GradeEntity, String> {
     GradeEntity findBy_id(String _id);
     @Query(value = "{ 'studentId' : ?0 }", fields="{'grade':1}")
-    List<GradeRestModel> findByStudentId(String studentId);
+    String findByStudentId(String student);
+
+    @Query(value = "{ 'subjectName' : ?0 }")
+    List<GradeRestModel> findBySubjectName(String subjectName);
 }

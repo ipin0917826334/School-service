@@ -20,6 +20,7 @@ public class GradeCommandController {
         this.commandGateway = commandGateway;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping
     public String createGrade(@RequestBody CreateGradeRestModel model){
         CreateGradeCommand command = CreateGradeCommand.builder()
@@ -36,6 +37,7 @@ public class GradeCommandController {
         }
         return result;
     }
+    @CrossOrigin(origins = "http://localhost:8080")
     @PutMapping
     public String updateGrade(@RequestBody GradeRestModel model){
         UpdateGradeCommand command = UpdateGradeCommand.builder()
@@ -53,6 +55,7 @@ public class GradeCommandController {
         return result;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @DeleteMapping
     public String deleteGrade(@RequestBody GradeRestModel model){
         DeleteGradeCommand command = DeleteGradeCommand.builder()
