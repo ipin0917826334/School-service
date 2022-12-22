@@ -20,6 +20,7 @@ public class TeacherCommandController {
         this.commandGateway = commandGateway;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping
     public String createTeacher(@RequestBody CreateTeacherRestModel model){
         CreateTeacherCommand command = CreateTeacherCommand.builder()
@@ -33,7 +34,6 @@ public class TeacherCommandController {
                 .email(model.getEmail())
                 .build();
         String result;
-        System.out.println("subject: "+model.getSubjects());
         try{
             result = commandGateway.sendAndWait(command);
         }catch(Exception e){
@@ -63,6 +63,7 @@ public class TeacherCommandController {
         return result;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @DeleteMapping
     public String deleteTeacher(@RequestBody TeacherRestModel model){
         DeleteTeacherCommand command = DeleteTeacherCommand.builder()
