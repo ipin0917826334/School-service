@@ -34,22 +34,24 @@ public class GradeQueryController {
     List<String> findGradeByStudentId(@RequestBody GradeRestModel model) throws IOException {
 
         List<String> grade = new ArrayList<String>();
-        //List<GradeRestModel> grades = null;
         
         for (int i=0; i<model.getStudent().length; i++){
-//            grade.add(model.getStudent()[i]);
-//            System.out.println(grade);
-            String grades = gradeRepository.findByStudentId(model.getStudent()[i]);
-            //System.out.println(grades);
+            String grades = gradeRepository.findByStudentId(model.getStudent()[i], model.getSubjectName());
+            System.out.println("ID "+model.getStudent()[i]);
+            System.out.println(grades);
+
+//            String[] arr = grades.split(", ");
+//            grade.add(arr[0]);
+//            grade.add(arr[1]);
             grade.add(grades);
-            //System.out.println("grade"+grade);
-            //System.out.println("grade"+ grade.get(0));
-            
         }
-        //List<GradeRestModel> grades = gradeRepository.findByStudentId(model.getStudent());
+//        grade.replaceAll(s -> s.replace("\"grade\":", ""));
+//        grade.replaceAll(s -> s.replace("}", ""));
+//        grade.replaceAll(s -> s.replace(" ", ""));
+//        grade.replaceAll(s -> s.replace("\"", ""));
+        System.out.println(grade);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         DataOutputStream out = new DataOutputStream(baos);
-
 
         for (String element : grade) {
             out.writeUTF(element);
